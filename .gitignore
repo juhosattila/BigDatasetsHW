@@ -1,0 +1,12 @@
+# Everything
+*
+!.gitignore
+
+# Directories should be stageable.
+!**/
+
+# Wanted extensions.
+!**/*.py
+
+Specific files
+!todos.txt

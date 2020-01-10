@@ -1,0 +1,9 @@
+-pycharm project
+-in github
+-set up colab with this project
+-import ready codes into pycharm project
+
+-work on it.
+
+-kell egy README, hogy hogyan kell használni
+-Readme-be collabos példakód és közzétenni a kódot.
