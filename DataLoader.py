@@ -83,9 +83,9 @@ class PascalDataLoader:
                                'target_size': img_target_size,
                                'batch_size': batch_size}
 
-        # The train data generator applies some geometrical transformation to expand the
+        # The validation and train data generator applies some geometrical transformation to expand the
         # number of training samples.
-        train_datagen = ImageDataGenerator(
+        train_valid_datagen = ImageDataGenerator(
             rotation_range=20,
             brightness_range=[-0.1, 0.1],
             rescale=1./255,
@@ -93,16 +93,16 @@ class PascalDataLoader:
             horizontal_flip=True,
             validation_split=0.1)
 
-        train_iterator = train_datagen.flow_from_dataframe(
+        train_iterator = train_valid_datagen.flow_from_dataframe(
             train_df, **iterator_parameters, subset='training')
-
-        # The validation and test data generator won't apply transformations apart from
-        # rescaling.
-        valid_test_datagen = ImageDataGenerator(rescale=1./255)
-
-        valid_iterator = valid_test_datagen.flow_from_dataframe(
+        valid_iterator = train_valid_datagen.flow_from_dataframe(
             train_df, **iterator_parameters, subset='validation')
-        test_iterator = valid_test_datagen.flow_from_dataframe(
+
+        # The test data generator won't apply transformations apart from
+        # rescaling.
+        test_datagen = ImageDataGenerator(rescale=1./255)
+
+        test_iterator = test_datagen.flow_from_dataframe(
             test_df, **iterator_parameters)
 
         return train_iterator, valid_iterator, test_iterator
