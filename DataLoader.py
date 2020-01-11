@@ -18,7 +18,7 @@ class PascalDataLoader():
 
     def __load_tarfile(self):
         # Check if data is already deleted by checking if inner path is present.
-        if os.path.exists( os.path.join(self.dataset_url, self.inner_path) ):
+        if os.path.exists(os.path.join(self.base_dir, self.inner_path)):
             return
 
         if not os.path.exists(self.base_dir):
@@ -39,13 +39,15 @@ class PascalDataLoader():
         annotations_dir = os.path.join(self.base_dir, self.inner_path, 'Annotations')
         annotations_files = os.listdir(annotations_dir)
 
-        df = pd.DataFrame(columns=['filename', 'classes'])
+        df_cols = ['filename', 'classes']
+        df = pd.DataFrame(columns=df_cols)
         for file in annotations_files:
             file_dom = minidom.parse(os.path.join(annotations_dir, file))
-            file_name = file_dom.getElementsByTagName('filename')[0]
-            labels = []
+            file_name = file_dom.getElementsByTagName('filename')[0].childNodes[0].data
+            labels = set()
             for obj in file_dom.getElementsByTagName('object'):
-                labels.append(obj.childNodes[1].childNodes[0].data)
-            df.append([file_name, labels], ignore_index=True)
+                labels.add(obj.childNodes[1].childNodes[0].data)
+            df = df.append(pd.Series([file_name, list(labels)], index=df_cols),
+                           ignore_index=True)
 
-        return df
+        return image_dir, df
