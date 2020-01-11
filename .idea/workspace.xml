@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0ab442f-71f2-4595-bd70-29c8f71da012" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/DataLoader.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataLoader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NeuralNetworks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/juhos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/juhos.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proba.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578676668788</updated>
-      <workItem from="1578676671532" duration="26860000" />
+      <workItem from="1578676671532" duration="31475000" />
     </task>
     <task id="LOCAL-00001" summary="###">
       <created>1578678177644</created>
@@ -123,7 +126,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/proba.py</url>
-          <line>2</line>
+          <line>6</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
