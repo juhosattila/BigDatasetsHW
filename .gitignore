@@ -8,5 +8,6 @@
 # Wanted extensions.
 !**/*.py
 
-Specific files
+#Specific files
+!README.md
 !todos.txt

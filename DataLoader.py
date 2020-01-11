@@ -17,7 +17,7 @@ class PascalDataLoader():
         self.tarfile_name = 'Pascal_dir.tar'
 
     def __load_tarfile(self):
-        # Check if data is already deleted by checking if inner path is present.
+        # Check if data is already downloaded by checking if inner path is present.
         if os.path.exists(os.path.join(self.base_dir, self.inner_path)):
             return
 
