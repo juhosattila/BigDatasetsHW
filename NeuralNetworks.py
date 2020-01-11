@@ -5,10 +5,6 @@ from keras.layers import Dense, GlobalAveragePooling2D
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.models import load_model
 
-from keras.metrics import top_k_categorical_accuracy
-
-def top_categorical_accuracy(y_true, y_pred):
-    return top_k_categorical_accuracy(y_true, y_pred, k=2)
 
 class InceptionNeuralNetwork:
     IMG_TARGET_SIZE = (299, 299)
@@ -29,7 +25,7 @@ class InceptionNeuralNetwork:
             layer.trainable = False
 
         self.model.compile(optimizer=Adam(lr=0.05),
-                           metrics=[top_categorical_accuracy],
+                           metrics=['binary_accuracy'],
                            loss='binary_crossentropy')
 
     def summary(self):
@@ -57,7 +53,7 @@ class InceptionNeuralNetwork:
             layer.trainable = True
 
         self.model.compile(optimizer=SGD(lr=0.0001, momentum=0.9, nesterov=True),
-                           metrics=[top_categorical_accuracy],
+                           metrics=['binary_accuracy'],
                            loss='binary_crossentropy')
 
         self.model.fit_generator(train_generator_iterator,
