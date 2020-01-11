@@ -68,14 +68,17 @@ class PascalDataLoader:
         image_dir = os.path.join(self.base_dir, self.inner_path, 'JPEGImages')
         return image_dir, self.df
 
-    def get_train_test_dataframes(self, test_split=0.1):
+    def get_train_valid_test_dataframes(self, valid_split=0.1, test_split=0.1):
         image_dir, df = self.load()
-        train_df, test_df = train_test_split(df, test_size=test_split, shuffle=True)
+        train_df, valid_test_df = train_test_split(df, test_size=valid_split + test_split, shuffle=True)
+        valid_df, test_df = train_test_split(valid_test_df,
+                                             test_size=(test_split / (valid_split + test_split)), shuffle=True)
 
-        return image_dir, train_df, test_df
+        return image_dir, train_df, valid_df, test_df
 
-    def get_train_valid_test_iterators(self, img_target_size, batch_size, test_split=0.1):
-        image_dir, train_df, test_df = self.get_train_test_dataframes(test_split=test_split)
+    def get_train_valid_test_iterators(self, img_target_size, batch_size, valid_split=0.1, test_split=0.1):
+        image_dir, train_df, valid_df, test_df = self.get_train_valid_test_dataframes(
+            valid_split=valid_split, test_split=test_split)
 
         iterator_parameters = {'directory': image_dir,
                                'x_col': 'filename',
@@ -85,24 +88,22 @@ class PascalDataLoader:
 
         # The validation and train data generator applies some geometrical transformation to expand the
         # number of training samples.
-        train_valid_datagen = ImageDataGenerator(
+        train_datagen = ImageDataGenerator(
             rotation_range=20,
             brightness_range=[-0.1, 0.1],
             rescale=1./255,
             shear_range=0.2,  zoom_range=0.2,
-            horizontal_flip=True,
-            validation_split=0.1)
+            horizontal_flip=True)
+        train_iterator = train_datagen.flow_from_dataframe(
+            train_df, **iterator_parameters)
 
-        train_iterator = train_valid_datagen.flow_from_dataframe(
-            train_df, **iterator_parameters, subset='training')
-        valid_iterator = train_valid_datagen.flow_from_dataframe(
-            train_df, **iterator_parameters, subset='validation')
-
-        # The test data generator won't apply transformations apart from
+        # The valid and test data generator won't apply transformations apart from
         # rescaling.
-        test_datagen = ImageDataGenerator(rescale=1./255)
+        valid_test_datagen = ImageDataGenerator(rescale=1./255)
 
-        test_iterator = test_datagen.flow_from_dataframe(
+        valid_iterator = valid_test_datagen.flow_from_dataframe(
+            valid_df, **iterator_parameters)
+        test_iterator = valid_test_datagen.flow_from_dataframe(
             test_df, **iterator_parameters)
 
         return train_iterator, valid_iterator, test_iterator
