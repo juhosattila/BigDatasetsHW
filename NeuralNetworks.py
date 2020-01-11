@@ -28,7 +28,7 @@ class InceptionNeuralNetwork:
 
         # We use Adam, which is not all that sensitive to the learning rate.
         self.model.compile(optimizer=Adam(lr=0.05),
-                           metrics=[lambda y_true, y_pred: top_k_categorical_accuracy(y_true, y_pred, k=2)],
+                           metrics=[(lambda y_true, y_pred: top_k_categorical_accuracy(y_true, y_pred, k=2))],
                            loss='binary_crossentropy')
 
     def summary(self):

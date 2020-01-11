@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0ab442f-71f2-4595-bd70-29c8f71da012" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/NeuralNetworks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/juhos.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/juhos.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NeuralNetworks.py" beforeDir="false" afterPath="$PROJECT_DIR$/NeuralNetworks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proba.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578676668788</updated>
-      <workItem from="1578676671532" duration="31475000" />
+      <workItem from="1578676671532" duration="32494000" />
     </task>
     <task id="LOCAL-00001" summary="###">
       <created>1578678177644</created>
@@ -98,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578764352901</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Inception network based agent added.">
+      <created>1578771074100</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1578771074100</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,14 +125,15 @@
     <MESSAGE value="###" />
     <MESSAGE value="Correction." />
     <MESSAGE value="Correction2." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction2." />
+    <MESSAGE value="Inception network based agent added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Inception network based agent added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/proba.py</url>
-          <line>6</line>
+          <line>5</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
