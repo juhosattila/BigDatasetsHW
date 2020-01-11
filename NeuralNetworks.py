@@ -59,7 +59,8 @@ class InceptionNeuralNetwork:
             layer.trainable = True
 
         self.model.compile(optimizer=SGD(lr=0.0001, momentum=0.9, nesterov=True),
-                           metrics=[lambda y_true, y_pred: top_k_categorical_accuracy(y_true, y_pred, k=2)],
+                           # metrics=[(lambda y_true, y_pred: top_k_categorical_accuracy(y_true, y_pred, k=2))],
+                           metrics=[top_categorical_accuracy],
                            loss='binary_crossentropy')
 
         self.model.fit_generator(train_generator_iterator,
