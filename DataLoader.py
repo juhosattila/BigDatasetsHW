@@ -90,7 +90,7 @@ class PascalDataLoader:
         # number of training samples.
         train_datagen = ImageDataGenerator(
             rotation_range=20,
-            brightness_range=[-0.1, 0.1],
+            #brightness_range=[-0.1, 0.1],
             rescale=1./255,
             shear_range=0.2,  zoom_range=0.2,
             horizontal_flip=True)

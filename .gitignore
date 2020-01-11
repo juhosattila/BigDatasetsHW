@@ -9,5 +9,6 @@
 !**/*.py
 
 #Specific files
+!.idea/**
 !README.md
 !todos.txt

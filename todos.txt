@@ -1,4 +1,4 @@
--ImageDataGenerator
+-ImageDataGenerator-ban brightness range-t kipróbál
 -háló példa
 	-ehhez használ DeepLearning HF-et és gyak példát
 
