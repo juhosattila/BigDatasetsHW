@@ -4,7 +4,6 @@
     <list default="true" id="f0ab442f-71f2-4595-bd70-29c8f71da012" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NeuralNetworks.py" beforeDir="false" afterPath="$PROJECT_DIR$/NeuralNetworks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proba.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1578676668788</updated>
-      <workItem from="1578676671532" duration="32494000" />
+      <workItem from="1578676671532" duration="32649000" />
     </task>
     <task id="LOCAL-00001" summary="###">
       <created>1578678177644</created>
