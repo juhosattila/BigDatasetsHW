@@ -28,14 +28,8 @@ class InceptionNeuralNetwork:
         for layer in base_model.layers:
             layer.trainable = False
 
-        # We use Adam, which is not all that sensitive to the learning rate.
-        # self.model.compile(optimizer=Adam(lr=0.05),
-        #                    #metrics=[( y_true, y_pred: top_k_categorical_accuracy(y_true, y_pred, k=2))],
-        #                    metrics=[top_categorical_accuracy],
-        #                    loss='binary_crossentropy')
-
         self.model.compile(optimizer=Adam(lr=0.05),
-                           metrics=['accuracy'],
+                           metrics=[top_categorical_accuracy],
                            loss='binary_crossentropy')
 
     def summary(self):
@@ -62,12 +56,8 @@ class InceptionNeuralNetwork:
         for layer in self.model.layers[172:]:
             layer.trainable = True
 
-        # self.model.compile(optimizer=SGD(lr=0.0001, momentum=0.9, nesterov=True),
-        #                    # metrics=[( y_true, y_pred: top_k_categorical_accuracy(y_true, y_pred, k=2))],
-        #                    metrics=[top_categorical_accuracy],
-        #                    loss='binary_crossentropy')
         self.model.compile(optimizer=SGD(lr=0.0001, momentum=0.9, nesterov=True),
-                           metrics=['accuracy'],
+                           metrics=[top_categorical_accuracy],
                            loss='binary_crossentropy')
 
         self.model.fit_generator(train_generator_iterator,
