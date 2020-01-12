@@ -72,9 +72,9 @@ class InceptionNeuralNetwork:
         self.metrics = args
 
 
-class InceptioNeuralNetwork1(InceptionNeuralNetwork):
-    def __init__(self, out_target_size):
-        super().__init__(output_target_size=out_target_size,
+class InceptionNeuralNetwork1(InceptionNeuralNetwork):
+    def __init__(self, output_target_size):
+        super().__init__(output_target_size=output_target_size,
                          supplement_model=self.__supplement_model)
 
     def __supplement_model(self, base_output):

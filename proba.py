@@ -3,7 +3,7 @@ from keras.layers import GlobalAveragePooling2D, Dense
 from DataLoader import PascalDataLoader
 from NeuralNetworks import InceptionNeuralNetwork
 
-from NeuralNetworks import InceptioNeuralNetwork1
+from NeuralNetworks import InceptionNeuralNetwork1
 
 bath_size = 32
 
@@ -27,4 +27,4 @@ nn.summary()
 nn.fit_generator(train_iterator, valid_iterator)
 nn.evaluate_generator(test_iterator)
 
-nn1 = InceptioNeuralNetwork1(out_target_size=20)
+nn1 = InceptionNeuralNetwork1(out_target_size=20)
