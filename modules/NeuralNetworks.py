@@ -46,6 +46,11 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                            loss='binary_crossentropy')
 
     def __load_model(self):
+        custom_objects = {
+            'recall_m': recall_m,
+            'precision_m': precision_m,
+            'f1_m': f1_m}
+
         self.model = load_model(self.model_file_name,
                                 custom_objects={'metrics': self.metrics})
 
@@ -54,7 +59,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         for layer in self.base_model.layers:
             layer.trainable = False
 
-        self.__compile(optimizer=Adam(lr=0.05))
+        self.__compile(optimizer=Adam(lr=0.1))
 
         # We are going to use early stopping and model saving-reloading mechanism.
         checkpointer = ModelCheckpoint(filepath=self.model_file_name, save_best_only=True, verbose=1)

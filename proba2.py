@@ -1,10 +1,18 @@
-from keras.metrics import accuracy, binary_accuracy, categorical_accuracy
-import tensorflow as tf
-from keras import backend as K
+from keras.layers import GlobalAveragePooling2D, Dense
 
-a = [0, 0, 0, 0, 0, 1]
-b = [0, 0, 1, 0, 0, 1]
+from modules.DataLoader import PascalDataLoader
+from modules.NeuralNetworks import InceptionNeuralNetwork
 
-with tf.Session() as sess:
-    print(binary_accuracy(a, b).eval())
+from modules.NeuralNetworks import InceptionNeuralNetwork1
 
+bath_size = 32
+
+train_iterator, valid_iterator, test_iterator = PascalDataLoader(minidataset=True).get_train_valid_test_iterators(
+    img_target_size=InceptionNeuralNetwork.IMG_TARGET_SIZE, batch_size=bath_size
+)
+
+nn = InceptionNeuralNetwork1(output_target_size=PascalDataLoader.NUMBER_OF_CLASSES)
+
+nn.summary()
+nn.fit_generator(train_iterator, valid_iterator)
+nn.evaluate_generator(test_iterator)
