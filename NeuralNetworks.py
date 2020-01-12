@@ -9,29 +9,25 @@ from keras.models import load_model
 class InceptionNeuralNetwork:
     IMG_TARGET_SIZE = (299, 299)
 
-    def __init__(self, output_target_size):
+    def __init__(self, output_target_size, supplement_model):
         # Let us download the InceptionV3 network without the top part.
-        base_model = InceptionV3(weights='imagenet', include_top=False)
-        x = base_model.output
-        # We supplement it with a few layers that have proven to be useful.
-        x = GlobalAveragePooling2D()(x)
-        x = Dense(256, activation='relu')(x)
-        x = Dense(256, activation='relu')(x)
-        predictions = Dense(output_target_size, activation='sigmoid')(x)
-        self.model = Model(inputs=base_model.input, outputs=predictions)
+        self.base_model = InceptionV3(weights='imagenet', include_top=False)
+        predictions = Dense(output_target_size, activation='sigmoid') \
+            (supplement_model(self.base_model.output))
+        self.model = Model(inputs=self.base_model.input, outputs=predictions)
 
+    def summary(self):
+        print(self.model.summary())
+
+    def fit_generator(self, train_generator_iterator, validation_generator_iterator):
         # Freeze the base model layers and train only the newly added layers.
-        for layer in base_model.layers:
+        for layer in self.base_model.layers:
             layer.trainable = False
 
         self.model.compile(optimizer=Adam(lr=0.05),
                            metrics=['binary_accuracy'],
                            loss='binary_crossentropy')
 
-    def summary(self):
-        print(self.model.summary())
-
-    def fit_generator(self, train_generator_iterator, validation_generator_iterator):
         # We are going to use early stopping and model saving-reloading mechanism.
         checkpointer = ModelCheckpoint(filepath='weights.hdf5', save_best_only=True, verbose=1)
         earlystopping = EarlyStopping(patience=2, verbose=1)
@@ -68,3 +64,16 @@ class InceptionNeuralNetwork:
         # Evaluate the model on the test set.
         print(self.model.metrics_names)
         print(self.model.evaluate_generator(test_generator_iterator))
+
+
+class InceptioNeuralNetwork1(InceptionNeuralNetwork):
+    def __init__(self, out_target_size):
+        super().__init__(output_target_size=out_target_size,
+                         supplement_model=self.__supplement_model)
+
+    def __supplement_model(self, base_output):
+        x = base_output
+        x = GlobalAveragePooling2D()(x)
+        x = Dense(256, activation='relu')(x)
+        x = Dense(256, activation='relu')(x)
+        return x
