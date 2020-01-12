@@ -4,11 +4,12 @@ from keras.optimizers import Adam, SGD
 from keras.layers import Dense, GlobalAveragePooling2D
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.models import load_model
+
 from abc import ABC, abstractmethod
 
+from Metrics import *
 
 class AbstractNeuralNetwork(ABC):
-    IMG_TARGET_SIZE = (299, 299)
 
     @abstractmethod
     def summary(self):
@@ -24,6 +25,7 @@ class AbstractNeuralNetwork(ABC):
 
 
 class InceptionNeuralNetwork(AbstractNeuralNetwork):
+    IMG_TARGET_SIZE = (299, 299)
 
     def __init__(self, output_target_size, supplement_model):
         # Let us download the InceptionV3 network without the top part.
@@ -32,7 +34,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
             (supplement_model(self.base_model.output))
         self.model = Model(inputs=self.base_model.input, outputs=predictions)
 
-        self.metrics = []
+        self.metrics = ['categorical_accuracy']
 
     def summary(self):
         print(self.model.summary())
@@ -93,6 +95,7 @@ class InceptionNeuralNetwork1(InceptionNeuralNetwork):
     def __init__(self, output_target_size):
         super().__init__(output_target_size=output_target_size,
                          supplement_model=self.__supplement_model)
+        self.set_metrics('categorical_accuracy', recall_m, precision_m, f1_m)
 
     def __supplement_model(self, base_output):
         x = base_output
