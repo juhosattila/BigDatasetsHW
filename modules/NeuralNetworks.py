@@ -59,7 +59,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         for layer in self.base_model.layers:
             layer.trainable = False
 
-        self.__compile(optimizer=Adam(lr=0.1))
+        self.__compile(optimizer=Adam(lr=0.25))
 
         # We are going to use early stopping and model saving-reloading mechanism.
         checkpointer = ModelCheckpoint(filepath=self.model_file_name, save_best_only=True, verbose=1)
