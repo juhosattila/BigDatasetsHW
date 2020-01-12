@@ -69,7 +69,7 @@ class InceptionNeuralNetwork:
         print(self.model.evaluate_generator(test_generator_iterator))
 
     def set_metrics(self, *args):
-        self.metrics = args
+        self.metrics = list(args)
 
 
 class InceptionNeuralNetwork1(InceptionNeuralNetwork):

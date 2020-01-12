@@ -4,7 +4,6 @@
     <list default="true" id="f0ab442f-71f2-4595-bd70-29c8f71da012" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NeuralNetworks.py" beforeDir="false" afterPath="$PROJECT_DIR$/NeuralNetworks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proba.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578676668788</updated>
       <workItem from="1578676671532" duration="37422000" />
-      <workItem from="1578825898608" duration="955000" />
+      <workItem from="1578825898608" duration="1744000" />
     </task>
     <task id="LOCAL-00001" summary="###">
       <created>1578678177644</created>
@@ -105,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578771074100</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Corrections.">
+      <created>1578826868539</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1578826868539</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,7 +135,8 @@
     <MESSAGE value="Correction." />
     <MESSAGE value="Correction2." />
     <MESSAGE value="Inception network based agent added." />
-    <option name="LAST_COMMIT_MESSAGE" value="Inception network based agent added." />
+    <MESSAGE value="Corrections." />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrections." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
