@@ -16,17 +16,22 @@ class InceptionNeuralNetwork:
             (supplement_model(self.base_model.output))
         self.model = Model(inputs=self.base_model.input, outputs=predictions)
 
+        self.metrics = []
+
     def summary(self):
         print(self.model.summary())
+
+    def __compile(self, optimizer):
+        self.model.compile(optimizer=optimizer,
+                           metrics=self.metrics,
+                           loss='binary_crossentropy')
 
     def fit_generator(self, train_generator_iterator, validation_generator_iterator):
         # Freeze the base model layers and train only the newly added layers.
         for layer in self.base_model.layers:
             layer.trainable = False
 
-        self.model.compile(optimizer=Adam(lr=0.05),
-                           metrics=['binary_accuracy'],
-                           loss='binary_crossentropy')
+        self.__compile(optimizer=Adam(lr=0.05))
 
         # We are going to use early stopping and model saving-reloading mechanism.
         checkpointer = ModelCheckpoint(filepath='weights.hdf5', save_best_only=True, verbose=1)
@@ -48,9 +53,7 @@ class InceptionNeuralNetwork:
         for layer in self.model.layers[172:]:
             layer.trainable = True
 
-        self.model.compile(optimizer=SGD(lr=0.0001, momentum=0.9, nesterov=True),
-                           metrics=['binary_accuracy'],
-                           loss='binary_crossentropy')
+        self.__compile(optimizer=SGD(lr=0.0001, momentum=0.9, nesterov=True))
 
         self.model.fit_generator(train_generator_iterator,
                                  epochs=5,
@@ -64,6 +67,9 @@ class InceptionNeuralNetwork:
         # Evaluate the model on the test set.
         print(self.model.metrics_names)
         print(self.model.evaluate_generator(test_generator_iterator))
+
+    def set_metrics(self, *args):
+        self.metrics = args
 
 
 class InceptioNeuralNetwork1(InceptionNeuralNetwork):

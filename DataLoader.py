@@ -7,6 +7,8 @@ from sklearn.model_selection import train_test_split
 from keras.preprocessing.image import ImageDataGenerator
 
 class PascalDataLoader:
+    NUMBER_OF_CLASSES = 20
+
     def __init__(self, minidataset: bool):
         if minidataset:
             self.dataset_url = 'http://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar'

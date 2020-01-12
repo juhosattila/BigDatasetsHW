@@ -20,7 +20,7 @@ def supplement1(base_output):
     return x
 
 
-nn = InceptionNeuralNetwork(output_target_size=20,
+nn = InceptionNeuralNetwork(output_target_size=PascalDataLoader.NUMBER_OF_CLASSES,
                             supplement_model=supplement1)
 
 nn.summary()
