@@ -43,7 +43,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
     def __compile(self, optimizer):
         self.model.compile(optimizer=optimizer,
                            metrics=self.metrics,
-                           loss='binary_crossentropy')
+                           loss='mse')
 
     def __load_model(self):
         custom_objects = {
