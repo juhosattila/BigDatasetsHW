@@ -11,20 +11,8 @@ train_iterator, valid_iterator, test_iterator = PascalDataLoader(minidataset=Tru
     img_target_size=InceptionNeuralNetwork.IMG_TARGET_SIZE, batch_size=bath_size
 )
 
-
-def supplement1(base_output):
-    x = base_output
-    x = GlobalAveragePooling2D()(x)
-    x = Dense(256, activation='relu')(x)
-    x = Dense(256, activation='relu')(x)
-    return x
-
-
-nn = InceptionNeuralNetwork(output_target_size=PascalDataLoader.NUMBER_OF_CLASSES,
-                            supplement_model=supplement1)
+nn = InceptionNeuralNetwork1(output_target_size=PascalDataLoader.NUMBER_OF_CLASSES)
 
 nn.summary()
 nn.fit_generator(train_iterator, valid_iterator)
 nn.evaluate_generator(test_iterator)
-
-nn1 = InceptionNeuralNetwork1(out_target_size=20)
