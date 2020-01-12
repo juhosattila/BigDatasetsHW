@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f0ab442f-71f2-4595-bd70-29c8f71da012" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NeuralNetworks.py" beforeDir="false" afterPath="$PROJECT_DIR$/NeuralNetworks.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578676668788</updated>
       <workItem from="1578676671532" duration="37422000" />
-      <workItem from="1578825898608" duration="1744000" />
+      <workItem from="1578825898608" duration="2030000" />
     </task>
     <task id="LOCAL-00001" summary="###">
       <created>1578678177644</created>
@@ -111,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578826868539</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Correction.">
+      <created>1578827656055</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1578827656055</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,11 +138,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="###" />
-    <MESSAGE value="Correction." />
     <MESSAGE value="Correction2." />
     <MESSAGE value="Inception network based agent added." />
     <MESSAGE value="Corrections." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrections." />
+    <MESSAGE value="Correction." />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
