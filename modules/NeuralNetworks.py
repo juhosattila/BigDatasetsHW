@@ -34,6 +34,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
             (supplement_model(self.base_model.output))
         self.model = Model(inputs=self.base_model.input, outputs=predictions)
 
+        self.model_file_name = 'model.hdf5'
         self.metrics = ['categorical_accuracy']
 
     def summary(self):
@@ -44,6 +45,10 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                            metrics=self.metrics,
                            loss='binary_crossentropy')
 
+    def __load_model(self):
+        self.model = load_model(self.model_file_name,
+                                custom_objects={'metrics': self.metrics})
+
     def fit_generator(self, train_generator_iterator, validation_generator_iterator):
         # Freeze the base model layers and train only the newly added layers.
         for layer in self.base_model.layers:
@@ -52,7 +57,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         self.__compile(optimizer=Adam(lr=0.05))
 
         # We are going to use early stopping and model saving-reloading mechanism.
-        checkpointer = ModelCheckpoint(filepath='weights.hdf5', save_best_only=True, verbose=1)
+        checkpointer = ModelCheckpoint(filepath=self.model_file_name, save_best_only=True, verbose=1)
         earlystopping = EarlyStopping(patience=2, verbose=1)
 
         # After all, train the upper layers of the  network.
@@ -62,7 +67,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                                  shuffle=True,
                                  callbacks=[checkpointer, earlystopping])
         # Reload the model.
-        self.model = load_model('weights.hdf5')
+        self.__load_model()
 
         # Now, unfreeze the upper part of the convolutional layers.
         # As, many things, this idea was also adopted from the corresponding seminar.
@@ -79,7 +84,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                                  shuffle=True,
                                  callbacks=[checkpointer, earlystopping])
 
-        self.model = load_model('weights.hdf5')
+        self.__load_model()
 
     def evaluate_generator(self, test_generator_iterator):
         # Evaluate the model on the test set.
