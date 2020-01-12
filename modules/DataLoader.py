@@ -109,3 +109,60 @@ class PascalDataLoader:
             test_df, **iterator_parameters)
 
         return train_iterator, valid_iterator, test_iterator
+    
+    #Images in different classes
+    def statistics_classes(self):
+        # loading data
+        datas = self.load()
+        df =  datas[1] # as list of arrays
+
+        # merge df classes to one array
+        merged_list = []
+        for l in df['classes']:
+          merged_list += l
+
+        unique, counts = np.unique(merged_list, return_counts=True)
+
+        no_of_different_classes = len(counts)
+        image_classes = []
+        for i in range(0, no_of_different_classes):
+          image_classes.append(unique[i])
+
+        #plotting (classes - no. of images in class) 
+        label_loc_x = np.arange(len(image_classes)) # label location on the bar
+
+        plt.bar(label_loc_x, counts, width=0.8)
+        plt.xticks(label_loc_x, image_classes, rotation='vertical')
+        plt.xlabel('Classes')
+        plt.ylabel('No. of images')
+        plt.title("No. of images in one class")
+        plt.show()
+        return
+
+    # Different labels on the image
+    def statistics_labels(self):
+        # loading data
+        datas = self.load()
+        df =  datas[1] # as list of arrays
+
+        label_count_list = []
+        for l in df['classes']:
+          label_count_list.append(len(l))
+
+        no_of_labels_in_image, label_counts = np.unique(label_count_list, return_counts=True)
+
+        #plotting (no of labels in image - no. of images) 
+        label_loc_x = np.arange(len(no_of_labels_in_image)) # label location on the bar
+
+        plt.bar(label_loc_x, label_counts, width=0.8)
+        plt.xticks(label_loc_x, no_of_labels_in_image)
+        plt.xlabel('No. of labels in image')
+        plt.ylabel('No. of images')
+        plt.title("Label - image")
+
+        for a,b in enumerate(label_counts):
+          plt.text(a - len(str(b))/16, b + 20, str(b), color='green')
+          #plt.text(rect.get_width() + rect.get_width()/2.0, b + 0.5, str(b))
+
+        plt.show()
+        return
