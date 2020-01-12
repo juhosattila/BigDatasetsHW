@@ -1,9 +1,9 @@
 from keras.layers import GlobalAveragePooling2D, Dense
 
-from DataLoader import PascalDataLoader
-from NeuralNetworks import InceptionNeuralNetwork
+from modules.DataLoader import PascalDataLoader
+from modules.NeuralNetworks import InceptionNeuralNetwork
 
-from NeuralNetworks import InceptionNeuralNetwork1
+from modules.NeuralNetworks import InceptionNeuralNetwork1
 
 bath_size = 32
 

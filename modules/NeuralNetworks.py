@@ -7,7 +7,7 @@ from keras.models import load_model
 
 from abc import ABC, abstractmethod
 
-from Metrics import *
+from modules.Metrics import *
 
 class AbstractNeuralNetwork(ABC):
 
