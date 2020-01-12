@@ -4,10 +4,26 @@ from keras.optimizers import Adam, SGD
 from keras.layers import Dense, GlobalAveragePooling2D
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.models import load_model
+from abc import ABC, abstractmethod
 
 
-class InceptionNeuralNetwork:
+class AbstractNeuralNetwork(ABC):
     IMG_TARGET_SIZE = (299, 299)
+
+    @abstractmethod
+    def summary(self):
+        pass
+
+    @abstractmethod
+    def fit_generator(self, train_generator_iterator, validation_generator_iterator):
+        pass
+
+    @abstractmethod
+    def evaluate_generator(self, test_generator_iterator):
+        pass
+
+
+class InceptionNeuralNetwork(AbstractNeuralNetwork):
 
     def __init__(self, output_target_size, supplement_model):
         # Let us download the InceptionV3 network without the top part.
