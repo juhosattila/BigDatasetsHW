@@ -39,6 +39,10 @@ class AbstractNeuralNetwork(ABC):
     def load(self, model_name):
         pass
 
+    @abstractmethod
+    def predict(self, x):
+        pass
+
 
 class InceptionNeuralNetwork(AbstractNeuralNetwork):
     IMG_TARGET_SIZE = (299, 299)
@@ -59,6 +63,9 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
 
     def load(self, model_name):
         self.__load_model(get_model_file_path(model_name))
+
+    def predict(self, x):
+        return self.model.predict(x)
 
     def summary(self):
         print(self.model.summary())
