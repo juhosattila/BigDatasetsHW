@@ -73,7 +73,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
     def __compile(self, optimizer):
         self.model.compile(optimizer=optimizer,
                            metrics=self.metrics,
-                           loss='mse')
+                           loss='binary_crossentropy')
 
     def __load_model(self, model_name=None):
         if model_name is None:
