@@ -1,3 +1,4 @@
+import os
 from keras.models import Model
 from keras.applications.inception_v3 import InceptionV3
 from keras.optimizers import Adam, SGD
@@ -8,6 +9,13 @@ from keras.models import load_model
 from abc import ABC, abstractmethod
 
 from modules.Metrics import *
+
+models_folder = 'BigDatasetsHW/Models/'
+
+
+def get_model_file_path(model_name):
+    return os.path.join(models_folder, model_name + '.h5')
+
 
 class AbstractNeuralNetwork(ABC):
 
@@ -23,6 +31,18 @@ class AbstractNeuralNetwork(ABC):
     def evaluate_generator(self, test_generator_iterator):
         pass
 
+    @abstractmethod
+    def save(self, model_name):
+        pass
+
+    @abstractmethod
+    def load(self, model_name):
+        pass
+
+    @abstractmethod
+    def predict(self, x):
+        pass
+
 
 class InceptionNeuralNetwork(AbstractNeuralNetwork):
     IMG_TARGET_SIZE = (299, 299)
@@ -36,6 +56,16 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
 
         self.model_file_name = 'model.hdf5'
         self.metrics = ['categorical_accuracy']
+        self.__compile(optimizer=Adam(lr=0.25))
+
+    def save(self, model_name):
+        self.model.save(get_model_file_path(model_name))
+
+    def load(self, model_name):
+        self.__load_model(get_model_file_path(model_name))
+
+    def predict(self, x):
+        return self.model.predict(x)
 
     def summary(self):
         print(self.model.summary())
@@ -45,14 +75,15 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                            metrics=self.metrics,
                            loss='mse')
 
-    def __load_model(self):
+    def __load_model(self, model_name=None):
+        if model_name is None:
+            model_name = self.model_file_name
         custom_objects = {
             'recall_m': recall_m,
             'precision_m': precision_m,
             'f1_m': f1_m}
 
-        self.model = load_model(self.model_file_name,
-                                custom_objects={'metrics': self.metrics})
+        self.model = load_model(model_name, custom_objects={'metrics': self.metrics})
 
     def fit_generator(self, train_generator_iterator, validation_generator_iterator):
         # Freeze the base model layers and train only the newly added layers.
@@ -112,4 +143,15 @@ class InceptionNeuralNetwork1(InceptionNeuralNetwork):
         x = GlobalAveragePooling2D()(x)
         x = Dense(256, activation='relu')(x)
         x = Dense(256, activation='relu')(x)
+        return x
+
+class InceptionNeuralNetwork2(InceptionNeuralNetwork):
+    def __init__(self, output_target_size):
+        super().__init__(output_target_size=output_target_size,
+                         supplement_model=self.__supplement_model)
+
+    def __supplement_model(self, base_output):
+        x = base_output
+        x = GlobalAveragePooling2D()(x)
+        x = Dense(16, activation='relu')(x)
         return x
