@@ -103,7 +103,8 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                                  shuffle=True,
                                  callbacks=[checkpointer, earlystopping])
         # Reload the model.
-        self.__load_model()
+        #### TODO these __load_model lines were commented out because the teaching failed
+        #### self.__load_model()
 
         # Now, unfreeze the upper part of the convolutional layers.
         # As, many things, this idea was also adopted from the corresponding seminar.
@@ -120,7 +121,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                                  shuffle=True,
                                  callbacks=[checkpointer, earlystopping])
 
-        self.__load_model()
+        ### self.__load_model()
 
     def evaluate_generator(self, test_generator_iterator):
         # Evaluate the model on the test set.
