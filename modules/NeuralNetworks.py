@@ -103,8 +103,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                                  shuffle=True,
                                  callbacks=[checkpointer, earlystopping])
         # Reload the model.
-        #### TODO these __load_model lines were commented out because the teaching failed
-        #### self.__load_model()
+        self.__load_model()
 
         # Now, unfreeze the upper part of the convolutional layers.
         # As, many things, this idea was also adopted from the corresponding seminar.
@@ -121,7 +120,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
                                  shuffle=True,
                                  callbacks=[checkpointer, earlystopping])
 
-        ### self.__load_model()
+        self.__load_model()
 
     def evaluate_generator(self, test_generator_iterator):
         # Evaluate the model on the test set.
@@ -137,7 +136,7 @@ class InceptionNeuralNetwork1(InceptionNeuralNetwork):
     def __init__(self, output_target_size):
         super().__init__(output_target_size=output_target_size,
                          supplement_model=self.__supplement_model)
-        self.set_metrics('categorical_accuracy', recall_m, precision_m, f1_m)
+        # self.set_metrics('categorical_accuracy', recall_m, precision_m, f1_m)
 
     def __supplement_model(self, base_output):
         x = base_output
@@ -154,5 +153,5 @@ class InceptionNeuralNetwork2(InceptionNeuralNetwork):
     def __supplement_model(self, base_output):
         x = base_output
         x = GlobalAveragePooling2D()(x)
-        x = Dense(16, activation='relu')(x)
+        x = Dense(20, activation='relu')(x)
         return x
