@@ -1,13 +1,14 @@
 import urllib.request as ure
 import os
-import numpy as np
-import matplotlib.pyplot as plt
 import tarfile
 from xml.dom import minidom
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.inception_v3 import preprocess_input
+from scipy import stats
+import matplotlib.pyplot as plt
+import numpy as np
 
 class PascalDataLoader:
     NUMBER_OF_CLASSES = 20
@@ -128,9 +129,8 @@ class PascalDataLoader:
     
     #Images in different classes
     def statistics_classes(self):
-        # loading data
-        datas = self.load()
-        df =  datas[1] # as list of arrays
+
+        df = self.df
 
         # merge df classes to one array
         merged_list = []
@@ -157,9 +157,8 @@ class PascalDataLoader:
 
     # Different labels on the image
     def statistics_labels(self):
-        # loading data
-        datas = self.load()
-        df =  datas[1] # as list of arrays
+
+        df = self.df
 
         label_count_list = []
         for l in df['classes']:
@@ -181,4 +180,24 @@ class PascalDataLoader:
           #plt.text(rect.get_width() + rect.get_width()/2.0, b + 0.5, str(b))
 
         plt.show()
+        return
+    
+    #Clean data (no person)
+    def clean_data(self):
+        df = self.df
+        #DELETE ALL PERSON LABELS
+
+        for index, row in df.iterrows():
+          if('person' in row['classes']):
+            row['classes'].remove('person')
+        
+        #DELETE ALL IMAGES WITH NO LABELS
+        df2 = df.copy()
+
+        for index, row in df2.iterrows():
+          l = row['classes']
+          if not l:
+            df = df.drop(index)
+        
+        self.df = df
         return
