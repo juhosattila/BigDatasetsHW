@@ -110,6 +110,21 @@ class PascalDataLoader:
             test_df, **iterator_parameters)
 
         return train_iterator, valid_iterator, test_iterator
+
+    def __class_indices(self):
+        # TODO is there a better way?
+        train_iterator, valid_iterator, test_iterator = self.get_train_valid_test_iterators((299, 299), 32)
+        return test_iterator.class_indices
+
+    def decode_predictions(self, predictions, threshold=0.5):
+        class_indices = self.__class_indices()
+        result = []
+        single_prediction = predictions[0]  # TODO extend the function to handle multiple predictions
+        for label, prediction in zip(class_indices, single_prediction):
+            if prediction >= threshold:
+                result.append((label, prediction))
+        result = sorted(result, key=lambda tup: tup[1], reverse=True)
+        return result
     
     #Images in different classes
     def statistics_classes(self):
