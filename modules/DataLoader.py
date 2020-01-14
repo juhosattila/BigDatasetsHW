@@ -7,6 +7,7 @@ from xml.dom import minidom
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from keras.preprocessing.image import ImageDataGenerator
+from keras.applications.inception_v3 import preprocess_input
 
 class PascalDataLoader:
     NUMBER_OF_CLASSES = 20
@@ -93,17 +94,15 @@ class PascalDataLoader:
         # The validation and train data generator applies some geometrical transformation to expand the
         # number of training samples.
         train_datagen = ImageDataGenerator(
+            preprocessing_function=preprocess_input,
             rotation_range=20,
-            #brightness_range=[-0.1, 0.1],
-            rescale=1./255,
             shear_range=0.2,  zoom_range=0.2,
             horizontal_flip=True)
         train_iterator = train_datagen.flow_from_dataframe(
             train_df, **iterator_parameters)
 
-        # The valid and test data generator won't apply transformations apart from
-        # rescaling.
-        valid_test_datagen = ImageDataGenerator(rescale=1./255)
+        # The valid and test data generator won't apply transformations apart from preprocessing
+        valid_test_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
 
         valid_iterator = valid_test_datagen.flow_from_dataframe(
             valid_df, **iterator_parameters)
