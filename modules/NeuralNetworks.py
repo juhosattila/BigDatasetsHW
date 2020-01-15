@@ -58,6 +58,9 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
 
         self.model_file_name = 'model.hdf5'
         self.metrics = ['categorical_accuracy']
+        # Freeze the base model layers and train only the newly added layers.
+        for layer in self.base_model.layers:
+            layer.trainable = False
         self.__compile(optimizer=Adam(lr=0.25))
 
         self.class_indices = None
@@ -98,44 +101,12 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         print(self.model.summary())
 
     def fit_generator(self, train_generator_iterator, validation_generator_iterator):
-        # Freeze the base model layers and train only the newly added layers.
-        for layer in self.base_model.layers:
-            layer.trainable = False
-
-        self.__compile(optimizer=Adam(lr=0.25))
-
-        # We are going to use early stopping and model saving-reloading mechanism.
-        checkpointer = ModelCheckpoint(filepath=self.model_file_name, save_best_only=True, verbose=1)
-        earlystopping = EarlyStopping(patience=2, verbose=1)
-
-        # After all, train the upper layers of the  network.
-        self.model.fit_generator(train_generator_iterator,
-                                 epochs=1,
-                                 validation_data=validation_generator_iterator,
-                                 shuffle=True,
-                                 callbacks=[checkpointer, earlystopping])
-        # Reload the model.
-        self.__load_model()
-
-        # Now, unfreeze the upper part of the convolutional layers.
-        # As, many things, this idea was also adopted from the corresponding seminar.
-        for layer in self.model.layers[:172]:
-            layer.trainable = False
-        for layer in self.model.layers[172:]:
-            layer.trainable = True
-
-        self.__compile(optimizer=SGD(lr=0.0001, momentum=0.9, nesterov=True))
-
-        self.model.fit_generator(train_generator_iterator,
-                                 epochs=1,
-                                 validation_data=validation_generator_iterator,
-                                 shuffle=True,
-                                 callbacks=[checkpointer, earlystopping])
-
-        self.__load_model()
-
         # Retrieve class indices.
         self.class_indices = train_generator_iterator.class_indices
+        self.model.fit_generator(train_generator_iterator,
+                                 epochs=5,
+                                 validation_data=validation_generator_iterator,
+                                 shuffle=True)
 
     def evaluate_generator(self, test_generator_iterator):
         # Evaluate the model on the test set.
