@@ -107,7 +107,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         checkpoint = ModelCheckpoint(filepath=self.model_file_name, save_best_only=True, verbose=1)
         early_stopping = EarlyStopping(patience=2, verbose=1)
         self.model.fit_generator(train_generator_iterator,
-                                 epochs=2,
+                                 epochs=1,
                                  validation_data=validation_generator_iterator,
                                  shuffle=True,
                                  callbacks=[checkpoint, early_stopping])
