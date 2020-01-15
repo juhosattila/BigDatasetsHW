@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f0ab442f-71f2-4595-bd70-29c8f71da012" name="Default Changelist" comment="Correction.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proba.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proba2.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba2.py" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1WDGI2g3CmyMUxzJ5GSKf0iaz3E" />
@@ -34,6 +43,18 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\juhos\NemSzinkronizalt\Nagymeretu\HF" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Python.proba2">
     <configuration name="proba" type="PythonConfigurationType" factoryName="Python">
@@ -85,18 +106,6 @@
       <item itemvalue="Python.proba2" />
     </list>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -110,6 +119,7 @@
       <workItem from="1578676671532" duration="37422000" />
       <workItem from="1578825898608" duration="15769000" />
       <workItem from="1578994016482" duration="3079000" />
+      <workItem from="1579070125991" duration="4158000" />
     </task>
     <task id="LOCAL-00001" summary="###">
       <created>1578678177644</created>
@@ -181,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578997065788</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Prediction trying out.">
+      <created>1579074298884</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1579074298884</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,25 +226,18 @@
     <MESSAGE value="the load_model lines were commented out because otherwise the teaching failed" />
     <MESSAGE value="comment out/uncomment the problematic lines" />
     <MESSAGE value="binary_crossentropy instead of mse as loss function" />
-    <option name="LAST_COMMIT_MESSAGE" value="binary_crossentropy instead of mse as loss function" />
+    <MESSAGE value="Prediction trying out." />
+    <option name="LAST_COMMIT_MESSAGE" value="Prediction trying out." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="32" y="55" width="1844" height="938" key="CommitChangelistDialog2" timestamp="1578997065258">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="32" y="55" width="1844" height="938" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1578997065258" />
-    <state x="182" y="121" width="1536" height="879" key="DiffContextDialog" timestamp="1578996720206">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="182" y="121" width="1536" height="879" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1578996720206" />
-    <state x="775" y="259" width="359" height="596" key="VCS.ChangeListViewerDialog" timestamp="1578996485607">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="775" y="259" width="359" height="596" key="VCS.ChangeListViewerDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1578996485607" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1578997068917">
-      <screen x="0" y="27" width="1920" height="1053" />
-    </state>
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1578997068917" />
+    <state x="32" y="55" width="1844" height="938" key="CommitChangelistDialog2" />
+    <state x="32" y="55" width="1844" height="938" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" />
+    <state x="182" y="121" width="1536" height="879" key="DiffContextDialog" />
+    <state x="182" y="121" width="1536" height="879" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" />
+    <state x="775" y="259" width="359" height="596" key="VCS.ChangeListViewerDialog" />
+    <state x="775" y="259" width="359" height="596" key="VCS.ChangeListViewerDialog/0.27.1920.1053@0.27.1920.1053" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HF$proba2.coverage" NAME="proba2 Coverage Results" MODIFIED="1578838547158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

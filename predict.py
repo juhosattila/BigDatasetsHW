@@ -41,8 +41,9 @@ else:
     ModelClass = getattr(importlib.import_module("modules.NeuralNetworks"), model_name)
     model = ModelClass(output_target_size=PascalDataLoader.NUMBER_OF_CLASSES)
     model.load(weights)
-    pascal_data_loader = PascalDataLoader(minidataset=True)
-    decoder_function = pascal_data_loader.decode_predictions
+    # pascal_data_loader = PascalDataLoader(minidataset=True)
+    # decoder_function = pascal_data_loader.decode_predictions
+    decoder_function = model.decode_predictions
 
 # model, decoder_function has been set accordingly to the command line parameters
 
