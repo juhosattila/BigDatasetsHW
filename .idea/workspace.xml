@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f0ab442f-71f2-4595-bd70-29c8f71da012" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proba.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/NeuralNetworks.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/NeuralNetworks.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +117,7 @@
       <workItem from="1578676671532" duration="37422000" />
       <workItem from="1578825898608" duration="15769000" />
       <workItem from="1578994016482" duration="3079000" />
-      <workItem from="1579070125991" duration="4545000" />
+      <workItem from="1579070125991" duration="5950000" />
     </task>
     <task id="LOCAL-00001" summary="###">
       <created>1578678177644</created>
@@ -203,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579074708022</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Saving added.">
+      <created>1579074885415</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1579074885415</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +239,8 @@
     <MESSAGE value="binary_crossentropy instead of mse as loss function" />
     <MESSAGE value="Prediction trying out." />
     <MESSAGE value="Correction." />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction." />
+    <MESSAGE value="Saving added." />
+    <option name="LAST_COMMIT_MESSAGE" value="Saving added." />
   </component>
   <component name="WindowStateProjectService">
     <state x="32" y="55" width="1844" height="938" key="CommitChangelistDialog2" />

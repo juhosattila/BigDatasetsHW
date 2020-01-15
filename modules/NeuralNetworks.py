@@ -75,7 +75,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
             'precision_m': precision_m,
             'f1_m': f1_m}
 
-        self.model = load_model(model_name, custom_objects={'metrics': self.metrics})
+        self.model = load_model(model_name, custom_objects=custom_objects)
 
     def save(self, model_name):
         self.model.save(get_model_file_path(model_name))
@@ -148,20 +148,22 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
 
     def decode_predictions(self, predictions, threshold=0.5):
         class_indices = self.class_indices
-        result = []
-        single_prediction = predictions[0]  # TODO extend the function to handle multiple predictions
-        for label, prediction in zip(class_indices, single_prediction):
-            if prediction >= threshold:
-                result.append((label, prediction))
-        result = sorted(result, key=lambda tup: tup[1], reverse=True)
-        return result
+        full_result = []
+        for single_prediction in predictions:
+            result = []
+            for label, prediction in zip(class_indices, single_prediction):
+                if prediction >= threshold:
+                    result.append((label, prediction))
+            result = sorted(result, key=lambda tup: tup[1], reverse=True)
+            full_result.append(result)
+        return full_result
 
 
 class InceptionNeuralNetwork1(InceptionNeuralNetwork):
     def __init__(self, output_target_size):
         super().__init__(output_target_size=output_target_size,
                          supplement_model=self.__supplement_model)
-        # self.set_metrics('categorical_accuracy', recall_m, precision_m, f1_m)
+        self.set_metrics('categorical_accuracy', recall_m, precision_m, f1_m)
 
     def __supplement_model(self, base_output):
         x = base_output
