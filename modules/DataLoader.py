@@ -204,9 +204,31 @@ class PascalDataLoader:
         return
 
     def data_to_single_class(self, single_class):
+        samples_in_class = 0
+        samples_not_in_class = 0
         for index, row in self.df.iterrows():
             if single_class in row['classes']:
                 row['classes'] = [single_class]
+                samples_in_class += 1
             else:
                 row['classes'] = []
+                samples_not_in_class += 1
+
+        print('Samples in class = ' + str(samples_in_class))
+        print('Samples not in class = ' + str(samples_not_in_class))
+
+        df_copy = self.df.copy()
+        for index, row in df_copy.iterrows():
+            if samples_in_class == samples_not_in_class:
+                return
+            l = row['classes']
+            if samples_in_class > samples_not_in_class:
+                if l:
+                    self.df = self.df.drop(index)
+                    samples_in_class -= 1
+            else:
+                if not l:
+                    self.df = self.df.drop(index)
+                    samples_not_in_class -= 1
+
 
