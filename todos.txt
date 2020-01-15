@@ -1,9 +1,6 @@
 -ImageDataGenerator-ban brightness range-t kipróbál
 -háló példa
 	-ehhez használ DeepLearning HF-et és gyak példát
--statisztikákat készít
--kiértékelőt készít
--metrikát megvizsgál
 -foglalkozik data imbalance-celgit
 -diszkre mentődjön modell le
 
