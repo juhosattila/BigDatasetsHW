@@ -13,6 +13,6 @@ train_iterator, valid_iterator, test_iterator = PascalDataLoader(minidataset=Tru
 
 nn = InceptionNeuralNetwork2(output_target_size=1)
 nn.summary()
-# nn.fit_generator(train_iterator, valid_iterator)
-# nn.save('peti-1')
-# nn.evaluate_generator(test_iterator)
+nn.fit_generator(train_iterator, valid_iterator)
+nn.save('peti-1')
+nn.evaluate_generator(test_iterator)

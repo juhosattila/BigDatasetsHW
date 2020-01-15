@@ -57,7 +57,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         self.model = Model(inputs=self.base_model.input, outputs=predictions)
 
         self.model_file_name = 'model.hdf5'
-        self.metrics = ['categorical_accuracy']
+        self.metrics = ['binary_accuracy']
         # Freeze the base model layers and train only the newly added layers.
         for layer in self.base_model.layers:
             layer.trainable = False
@@ -151,4 +151,5 @@ class InceptionNeuralNetwork2(InceptionNeuralNetwork):
 
     def __supplement_model(self, base_output):
         x = base_output
+        x = GlobalAveragePooling2D()(x)
         return x

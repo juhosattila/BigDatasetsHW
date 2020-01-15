@@ -64,6 +64,7 @@ class PascalDataLoader:
                            ignore_index=True)
 
         self.df = df
+        self.data_to_single_class('cat')
         self.dataframe_prepared = True
         return
 
@@ -201,3 +202,11 @@ class PascalDataLoader:
         
         self.df = df
         return
+
+    def data_to_single_class(self, single_class):
+        for index, row in self.df.iterrows():
+            if single_class in row['classes']:
+                row['classes'] = [single_class]
+            else:
+                row['classes'] = []
+
