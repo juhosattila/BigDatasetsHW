@@ -19,5 +19,8 @@ print('\nTransformed InceptionV3 loaded.\n')
 print('\nStarting learing.\n')
 nn.fit_generator(train_iterator, valid_iterator)
 
+print('\nSaving modell\n')
+nn.save('model365')
+
 print('\nEvaluation')
 nn.evaluate_generator(test_iterator)
