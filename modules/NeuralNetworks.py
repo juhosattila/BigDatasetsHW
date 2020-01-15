@@ -104,7 +104,7 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         # Retrieve class indices.
         self.class_indices = train_generator_iterator.class_indices
         self.model.fit_generator(train_generator_iterator,
-                                 epochs=5,
+                                 epochs=1,
                                  validation_data=validation_generator_iterator,
                                  shuffle=True)
 
