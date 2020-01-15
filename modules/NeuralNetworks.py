@@ -151,6 +151,4 @@ class InceptionNeuralNetwork2(InceptionNeuralNetwork):
 
     def __supplement_model(self, base_output):
         x = base_output
-        x = GlobalAveragePooling2D()(x)
-        x = Dense(20, activation='relu')(x)
         return x

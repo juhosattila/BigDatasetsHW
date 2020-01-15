@@ -11,9 +11,8 @@ train_iterator, valid_iterator, test_iterator = PascalDataLoader(minidataset=Tru
     img_target_size=InceptionNeuralNetwork.IMG_TARGET_SIZE, batch_size=bath_size
 )
 
-nn = InceptionNeuralNetwork2(output_target_size=PascalDataLoader.NUMBER_OF_CLASSES)
-
+nn = InceptionNeuralNetwork2(output_target_size=1)
 nn.summary()
-nn.fit_generator(train_iterator, valid_iterator)
-nn.save('peti-1')
-nn.evaluate_generator(test_iterator)
+# nn.fit_generator(train_iterator, valid_iterator)
+# nn.save('peti-1')
+# nn.evaluate_generator(test_iterator)
