@@ -214,9 +214,6 @@ class PascalDataLoader:
                 row['classes'] = []
                 samples_not_in_class += 1
 
-        print('Samples in class = ' + str(samples_in_class))
-        print('Samples not in class = ' + str(samples_not_in_class))
-
         df_copy = self.df.copy()
         for index, row in df_copy.iterrows():
             if samples_in_class == samples_not_in_class:
