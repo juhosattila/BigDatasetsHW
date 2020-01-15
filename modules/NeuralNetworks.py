@@ -103,10 +103,16 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
     def fit_generator(self, train_generator_iterator, validation_generator_iterator):
         # Retrieve class indices.
         self.class_indices = train_generator_iterator.class_indices
+        # We are going to use early stopping and model saving-reloading mechanism.
+        checkpoint = ModelCheckpoint(filepath=self.model_file_name, save_best_only=True, verbose=1)
+        early_stopping = EarlyStopping(patience=2, verbose=1)
         self.model.fit_generator(train_generator_iterator,
-                                 epochs=1,
+                                 epochs=2,
                                  validation_data=validation_generator_iterator,
-                                 shuffle=True)
+                                 shuffle=True,
+                                 callbacks=[checkpoint, early_stopping])
+        # Reload the model.
+        self.__load_model()
 
     def evaluate_generator(self, test_generator_iterator):
         # Evaluate the model on the test set.
