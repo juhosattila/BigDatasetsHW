@@ -5,6 +5,7 @@ from keras.optimizers import Adam, SGD
 from keras.layers import Dense, GlobalAveragePooling2D
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 from keras.models import load_model
+from keras.callbacks import Callback
 
 from abc import ABC, abstractmethod
 import json
@@ -18,6 +19,21 @@ def get_model_file_path(model_name):
     return os.path.join(models_folder, model_name + '.h5')
 def get_model_decoding_path(model_name):
     return os.path.join(models_folder, model_name + '.json')
+
+
+class ConsoleNewlineCallback(Callback):
+
+  def on_train_batch_begin(self, batch, logs=None):
+    pass
+
+  def on_train_batch_end(self, batch, logs=None):
+    print()
+
+  def on_test_batch_begin(self, batch, logs=None):
+    pass
+
+  def on_test_batch_end(self, batch, logs=None):
+    pass
 
 class AbstractNeuralNetwork(ABC):
 
@@ -106,11 +122,12 @@ class InceptionNeuralNetwork(AbstractNeuralNetwork):
         # We are going to use early stopping and model saving-reloading mechanism.
         checkpoint = ModelCheckpoint(filepath=self.model_file_name, save_best_only=True, verbose=1)
         early_stopping = EarlyStopping(patience=2, verbose=1)
+        console_newline = ConsoleNewlineCallback()
         self.model.fit_generator(train_generator_iterator,
                                  epochs=1,
                                  validation_data=validation_generator_iterator,
                                  shuffle=True,
-                                 callbacks=[checkpoint, early_stopping])
+                                 callbacks=[checkpoint, early_stopping, console_newline])
         # Reload the model.
         self.__load_model()
 
